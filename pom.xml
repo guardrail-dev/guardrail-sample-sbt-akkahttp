@@ -9,7 +9,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <scala.binary.version>2.12</scala.binary.version>
     <scala.version>2.12.4</scala.version>
-    <guardrail.version>0.34.0</guardrail.version>
+    <guardrail.version>0.56.0</guardrail.version>
   </properties>
 
   <pluginRepositories>
@@ -79,7 +79,7 @@
       <plugin>
         <groupId>com.twilio</groupId>
         <artifactId>guardrail-maven-plugin_2.12</artifactId>
-        <version>0.44.0</version>
+        <version>${guardrail.version}</version>
         <executions>
           <execution>
             <id>generate-petstore-client</id>
