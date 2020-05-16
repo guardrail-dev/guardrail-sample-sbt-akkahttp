@@ -4,10 +4,26 @@ basePath: /v1
 schemes:
   - http
 paths:
+  /pet/{name}:
+    put:
+      operationId: updatePet
+      x-scala-package: pet
+      parameters:
+        - name: name
+          in: path
+          type: string
+        - name: body
+          in: body
+          schema:
+            $ref: "#!/definitions/Pet"
+      responses:
+        200:
+          schema:
+            $ref: "#!/definitions/Pet"
   /pets:
     post:
-      operationId: createPets
-      x-scala-package: pets
+      operationId: createPet
+      x-scala-package: pet
       parameters:
         - name: name
           in: formData
@@ -21,8 +37,15 @@ paths:
       responses:
         200:
           schema:
-            type: string
+            $ref: "#!/definitions/Pet"
 definitions:
+  Pet:
+    type: object
+    properties:
+      name:
+        type: string
+      status:
+        type: string
   SqlConditionEqualityType:
     type: string
     enum:

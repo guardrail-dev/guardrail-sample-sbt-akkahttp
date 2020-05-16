@@ -1,15 +1,6 @@
-import akka.http.scaladsl.model._
-import akka.http.scaladsl.model.headers.RawHeader
-import akka.http.scaladsl.unmarshalling.{ Unmarshal, Unmarshaller, FromEntityUnmarshaller, FromRequestUnmarshaller, FromStringUnmarshaller }
-import akka.http.scaladsl.marshalling.{ Marshal, Marshaller, Marshalling, ToEntityMarshaller, ToResponseMarshaller }
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.{ Directive, Directive0, Directive1, ExceptionHandler, MalformedHeaderRejection, MissingFormFieldRejection, Rejection, Route }
-import akka.http.scaladsl.util.FastFuture
-import akka.stream.{ IOResult, Materializer }
-import akka.stream.scaladsl.{ FileIO, Keep, Sink, Source }
-import akka.util.ByteString
 import scala.concurrent._
-import foo.pets._
+import nullability.pet._
+import nullability.definitions.Pet
 
 object App extends App {
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -46,11 +37,14 @@ object App extends App {
     println("Running at http://localhost:8080 !")
   }
 
-  val routes = PetsResource.routes(new PetsHandler {
-    override def createPets(respond: PetsResource.createPetsResponse.type)(name: Option[String] = None, status: Option[String] = None, file: Option[(java.io.File, Option[String], akka.http.scaladsl.model.ContentType)]): scala.concurrent.Future[PetsResource.createPetsResponse] = {
-      Future.successful(respond.OK((name, status).toString))
+  val routes = PetResource.routes(new PetHandler {
+    override def createPet(respond: PetResource.createPetResponse.type)(name: Option[String], status: Option[String], file: Option[(java.io.File, Option[String], akka.http.scaladsl.model.ContentType)]): scala.concurrent.Future[PetResource.createPetResponse] = {
+      Future.successful(respond.OK(Pet()))
     }
-    def createPetsMapFileField(fieldName: String,fileName: Option[String],contentType: akka.http.scaladsl.model.ContentType): java.io.File = ???
+    override def createPetMapFileField(fieldName: String,fileName: Option[String],contentType: akka.http.scaladsl.model.ContentType): java.io.File = ???
+    override def updatePet(respond: PetResource.updatePetResponse.type)(name: String, body: Option[Pet]): Future[PetResource.updatePetResponse] = {
+      Future.successful(Pet())
+    }
   })
   bindAndServe(routes)
 
