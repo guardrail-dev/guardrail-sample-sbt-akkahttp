@@ -3,8 +3,8 @@ guardrailTasks in Compile := List(
 )
 
 val akkaVersion       = "10.0.14"
-val catsVersion       = "1.4.0"
-val circeVersion      = "0.10.1"
+val catsVersion       = "2.0.0"
+val circeVersion      = "0.13.0"
 val scalatestVersion  = "3.0.7"
 
 scalacOptions += "-Ypartial-unification"
@@ -16,13 +16,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-testkit" % akkaVersion,
   "io.circe"          %% "circe-core"        % circeVersion,
   "io.circe"          %% "circe-generic"     % circeVersion,
-  "io.circe"          %% "circe-java8"       % circeVersion,
   "io.circe"          %% "circe-parser"      % circeVersion,
   "org.scalatest"     %% "scalatest"         % scalatestVersion % Test,
   "org.typelevel"     %% "cats-core"         % catsVersion
-)
-
-libraryDependencies ++= Seq(
-  "com.twilio" %% "scala-service-http-server" % "0.46.1",
-  "com.twilio" %% "scala-service-http-client" % "0.46.1",
 )
