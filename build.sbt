@@ -23,3 +23,5 @@ libraryDependencies ++= Seq(
   "org.scalatest"     %% "scalatest"         % scalatestVersion % Test,
   "org.typelevel"     %% "cats-core"         % catsVersion
 )
+
+addCompilerPlugin(scalafixSemanticdb)
