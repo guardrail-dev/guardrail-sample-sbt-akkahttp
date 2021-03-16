@@ -7,6 +7,7 @@ val akkaHttpVersion   = "10.1.12"
 val catsVersion       = "2.0.0"
 val circeVersion      = "0.13.0"
 val scalatestVersion  = "3.0.7"
+val jaxbApiVersion    = "2.3.1"
 
 scalacOptions ++= Seq("-Ypartial-unification", "-deprecation")
 
@@ -20,8 +21,9 @@ libraryDependencies ++= Seq(
   "io.circe"          %% "circe-core"        % circeVersion,
   "io.circe"          %% "circe-generic"     % circeVersion,
   "io.circe"          %% "circe-parser"      % circeVersion,
+  "javax.xml.bind"    %  "jaxb-api"          % jaxbApiVersion,
   "org.scalatest"     %% "scalatest"         % scalatestVersion % Test,
-  "org.typelevel"     %% "cats-core"         % catsVersion
+  "org.typelevel"     %% "cats-core"         % catsVersion,
 )
 
 addCompilerPlugin(scalafixSemanticdb)
