@@ -2,7 +2,7 @@ guardrailTasks in Compile := List(
   ScalaServer(file("petstore.yaml"), pkg="foo"),
 )
 
-val akkaVersion       = "2.6.5"
+val akkaVersion       = "2.6.13"
 val akkaHttpVersion   = "10.1.12"
 val catsVersion       = "2.0.0"
 val circeVersion      = "0.13.0"
