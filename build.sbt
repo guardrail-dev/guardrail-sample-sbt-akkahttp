@@ -6,12 +6,12 @@ val akkaVersion       = "2.6.13"
 val akkaHttpVersion   = "10.1.12"
 val catsVersion       = "2.4.2"
 val circeVersion      = "0.13.0"
-val scalatestVersion  = "3.0.7"
+val scalatestVersion  = "3.0.9"
 val jaxbApiVersion    = "2.3.1"
 
 scalacOptions ++= Seq("-Ypartial-unification", "-deprecation")
 
-libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.25"
+libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.30"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor"        % akkaVersion,
