@@ -11,7 +11,7 @@ val jaxbApiVersion    = "2.3.1"
 
 scalacOptions ++= Seq("-Ypartial-unification", "-deprecation")
 
-libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.25"
+libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.30"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor"        % akkaVersion,
