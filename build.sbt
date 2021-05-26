@@ -5,7 +5,7 @@ guardrailTasks in Compile := List(
 val akkaVersion       = "2.6.14"
 val akkaHttpVersion   = "10.2.4"
 val catsVersion       = "2.6.0"
-val circeVersion      = "0.13.0"
+val circeVersion      = "0.14.1"
 val scalatestVersion  = "3.2.8"
 val jaxbApiVersion    = "2.3.1"
 
