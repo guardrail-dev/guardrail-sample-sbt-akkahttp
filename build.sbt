@@ -6,7 +6,7 @@ val akkaVersion       = "2.6.14"
 val akkaHttpVersion   = "10.2.4"
 val catsVersion       = "2.6.1"
 val circeVersion      = "0.13.0"
-val scalatestVersion  = "3.2.8"
+val scalatestVersion  = "3.2.9"
 val jaxbApiVersion    = "2.3.1"
 
 scalacOptions ++= Seq("-Ypartial-unification", "-deprecation")
