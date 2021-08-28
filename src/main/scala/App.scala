@@ -23,6 +23,6 @@ object App extends App {
     }
   })
 
-  Await.result(Http().bindAndHandle(routes, "127.0.0.1", 8080), Duration.Inf)
+  Await.result(Http().newServerAt("127.0.0.1", 8080).bindFlow(routes), Duration.Inf)
   println("Running at http://localhost:8080 !")
 }
