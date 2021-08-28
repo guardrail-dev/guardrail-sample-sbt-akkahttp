@@ -34,30 +34,30 @@ paths:
       requestBody:
         required: true
         content:
-#           application/x-www-form-urlencoded:
-#             schema:
-#               properties:
-#                 name:
-#                   type: string
-#                 status:
-#                   type: string
-#               required:
-#                 - name
-#           multipart/form-data:
-#             schema:
-#               properties:
-#                 name:
-#                   type: string
-#                 status:
-#                   type: string
-#                 file:
-#                   type: string
-#                   format: binary
-#               required:
-#                 - name
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
-              $ref: "#!/components/schemas/Pet"
+              properties:
+                name:
+                  type: string
+                status:
+                  type: string
+              required:
+                - name
+#          multipart/form-data:
+#            schema:
+#              properties:
+#                name:
+#                  type: string
+#                status:
+#                  type: string
+#                file:
+#                  type: string
+#                  format: binary
+#              required:
+#                - name
+#          application/json:
+#            schema:
+#              $ref: "#!/components/schemas/Pet"
       responses:
         "200":
           description: ""

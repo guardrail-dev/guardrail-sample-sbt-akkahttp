@@ -8,19 +8,28 @@ import akka.http.scaladsl.model.ContentType
 
 import foo.pet._
 import foo.definitions.Pet
+import java.io.File
 
 object App extends App {
 
   implicit def actorSystem = ActorSystem()
 
   val routes = PetResource.routes(new PetHandler {
-    override def createPet(respond: PetResource.CreatePetResponse.type)(name: Option[String], status: Option[String], file: Option[(java.io.File, Option[String], ContentType)]): scala.concurrent.Future[PetResource.CreatePetResponse] = {
-      Future.successful(respond.OK(Pet()))
+    // application/x-www-form-urlencoded
+    def createPet(respond: PetResource.CreatePetResponse.type)(name: String, status: Option[String]): scala.concurrent.Future[PetResource.CreatePetResponse] = {
+      Future.successful(respond.OK(Pet(name=name, status=status)))
     }
-    override def createPetMapFileField(fieldName: String,fileName: Option[String],contentType: ContentType): java.io.File = ???
-    override def updatePet(respond: PetResource.UpdatePetResponse.type)(name: String, body: Option[Pet]): Future[PetResource.UpdatePetResponse] = {
-      Future.successful(respond.OK(body.getOrElse(Pet())))
+    // multipart/form-data
+    def createPet(respond: PetResource.CreatePetResponse.type)(name: String, status: Option[String], file: Option[(java.io.File, Option[String], ContentType)]): scala.concurrent.Future[PetResource.CreatePetResponse] = {
+      Future.successful(respond.OK(Pet(name=name, status=status)))
     }
+    def createPetMapFileField(fieldName: String, fileName: Option[String], contentType: ContentType): File = ???
+
+    // application/json
+    def createPet(respond: PetResource.CreatePetResponse.type)(body: Pet): Future[PetResource.CreatePetResponse] = {
+      Future.successful(respond.OK(body))
+    }
+    override def updatePet(respond: PetResource.UpdatePetResponse.type)(name: String, body: Option[Pet]): Future[PetResource.UpdatePetResponse] = ???
   })
 
   Await.result(Http().newServerAt("127.0.0.1", 8080).bindFlow(routes), Duration.Inf)
