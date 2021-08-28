@@ -1,8 +1,9 @@
-swagger: 2.0
-host: petstore.swagger.io
-basePath: /v1
-schemes:
-  - http
+openapi: 3.0.0
+servers:
+  - url: http://petstore.swagger.io/v1
+info:
+  version: ""
+  title: ""
 paths:
   /pet/{name}:
     put:
@@ -11,38 +12,67 @@ paths:
       parameters:
         - name: name
           in: path
-          type: string
-        - name: body
-          in: body
           schema:
-            $ref: "#!/definitions/Pet"
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#!/components/schemas/Pet"
       responses:
-        200:
-          schema:
-            $ref: "#!/definitions/Pet"
+        "200":
+          description: ""
+          content:
+            "multipart/form-data":
+              schema:
+                $ref: "#!/components/schemas/Pet"
   /pets:
     post:
       operationId: createPet
       x-scala-package: pet
-      parameters:
-        - name: name
-          in: formData
-          type: string
-        - name: status
-          in: formData
-          type: string
-        - name: file
-          in: formData
-          type: file
+      requestBody:
+        required: true
+        content:
+#           application/x-www-form-urlencoded:
+#             schema:
+#               properties:
+#                 name:
+#                   type: string
+#                 status:
+#                   type: string
+#               required:
+#                 - name
+#           multipart/form-data:
+#             schema:
+#               properties:
+#                 name:
+#                   type: string
+#                 status:
+#                   type: string
+#                 file:
+#                   type: string
+#                   format: binary
+#               required:
+#                 - name
+          application/json:
+            schema:
+              $ref: "#!/components/schemas/Pet"
       responses:
-        200:
-          schema:
-            $ref: "#!/definitions/Pet"
-definitions:
-  Pet:
-    type: object
-    properties:
-      name:
-        type: string
-      status:
-        type: string
+        "200":
+          description: ""
+          content:
+            "*/*":
+              schema:
+                $ref: "#!/components/schemas/Pet"
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        status:
+          type: string
