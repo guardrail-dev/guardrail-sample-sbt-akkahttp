@@ -1,4 +1,4 @@
-guardrailTasks in Compile := List(
+Compile / guardrailTasks := List(
   ScalaServer(file("petstore.yaml"), pkg="foo"),
 )
 
