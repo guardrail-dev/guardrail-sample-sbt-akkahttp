@@ -28,6 +28,32 @@ paths:
               schema:
                 $ref: "#!/components/schemas/Pet"
   /pets:
+    get:
+      operationId: getPets
+      x-scala-package: pet
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: array
+                  items:
+                    type: string
+                status:
+                  type: string
+              required:
+                - name
+      responses:
+        "200":
+          description: ""
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: "#!/components/schemas/Pet"
     post:
       operationId: createPet
       x-scala-package: pet
