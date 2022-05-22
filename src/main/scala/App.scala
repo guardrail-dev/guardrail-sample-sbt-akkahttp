@@ -29,7 +29,10 @@ object App extends App {
     def createPet(respond: PetResource.CreatePetResponse.type)(body: Pet): Future[PetResource.CreatePetResponse] = {
       Future.successful(respond.OK(body))
     }
+
     override def updatePet(respond: PetResource.UpdatePetResponse.type)(name: String, body: Option[Pet]): Future[PetResource.UpdatePetResponse] = ???
+
+    def getPets(respond: PetResource.GetPetsResponse.type)(name: Iterable[String], status: Option[String]) = ???
   })
 
   Await.result(Http().newServerAt("127.0.0.1", 8080).bindFlow(routes), Duration.Inf)
