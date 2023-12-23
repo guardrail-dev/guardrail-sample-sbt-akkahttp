@@ -19,14 +19,14 @@ paths:
         content:
           application/json:
             schema:
-                $ref: "#!/components/schemas/Pet"
+                $ref: "#/components/schemas/Pet"
       responses:
         "200":
           description: ""
           content:
             "multipart/form-data":
               schema:
-                $ref: "#!/components/schemas/Pet"
+                $ref: "#/components/schemas/Pet"
   /pets:
     get:
       operationId: getPets
@@ -53,7 +53,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#!/components/schemas/Pet"
+                  $ref: "#/components/schemas/Pet"
     post:
       operationId: createPet
       x-scala-package: pet
@@ -83,14 +83,14 @@ paths:
 #                - name
 #          application/json:
 #            schema:
-#              $ref: "#!/components/schemas/Pet"
+#              $ref: "#/components/schemas/Pet"
       responses:
         "200":
           description: ""
           content:
             "*/*":
               schema:
-                $ref: "#!/components/schemas/Pet"
+                $ref: "#/components/schemas/Pet"
 components:
   schemas:
     Pet:
